@@ -27,6 +27,10 @@ if node['hadoop'].key?('core_site') && node['hadoop']['core_site'].key?('hadoop.
   Chef::Log.info("Secure Hadoop Enabled: Kerberos Realm '#{node['krb5']['krb5_conf']['realms']['default_realm']}'")
   secure_hadoop_enabled = true
 
+  # Install 'kstart' for k5start command
+  include_recipe 'yum-epel::default' if node['platform_family'] == 'rhel'
+  package 'kstart'
+
   # Create users for services not in base Hadoop
   %w(hbase hive zookeeper).each do |u|
     user u do
