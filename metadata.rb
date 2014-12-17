@@ -6,7 +6,7 @@ description      'Hadoop wrapper'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.1.13'
 
-%w(apt java yum).each do |cb|
+%w(apt java yum yum-epel).each do |cb|
   depends cb
 end
 
