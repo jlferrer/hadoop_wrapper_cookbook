@@ -69,6 +69,18 @@ if node['hadoop'].key?('core_site') && node['hadoop']['core_site'].key?('hadoop.
     end
   end
 
+  # The yarn principal is needed to run YARN applications/MapReduce
+  krb5_principal "yarn"
+    randkey true
+    action :create
+  end
+  krb5_keytab "#{node['krb5']['keytabs_dir']}/yarn.keytab" do
+    principals ['yarn']
+    owner 'yarn'
+    group 'hadoop'
+    mode '0600'
+  end
+
   # Hack up /etc/default/hadoop-hdfs-datanode
   execute 'modify-etc-default-files' do
     command 'sed -i -e "/HADOOP_SECURE_DN/ s/^#//g" /etc/default/hadoop-hdfs-datanode'
