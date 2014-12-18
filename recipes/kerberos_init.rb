@@ -63,9 +63,9 @@ if node['hadoop'].key?('core_site') && node['hadoop']['core_site'].key?('hadoop.
     end
     krb5_keytab "#{node['krb5']['keytabs_dir']}/#{name}.service.keytab" do
       principals ["#{name}/#{node['fqdn']}", "HTTP/#{node['fqdn']}"]
-      owner opts.owner
-      group opts.group
-      mode  opts.mode
+      owner opts['owner']
+      group opts['group']
+      mode  opts['mode']
     end
   end
 
