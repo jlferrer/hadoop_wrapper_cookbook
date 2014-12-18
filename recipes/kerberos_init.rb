@@ -48,13 +48,13 @@ if node['hadoop'].key?('core_site') && node['hadoop']['core_site'].key?('hadoop.
 
   # Create service keytabs for all services, since we may be a client
   keytabs = {
-    hdfs      => { 'owner' => 'hdfs', 'group' => 'hadoop', 'mode' => '0640' },
-    hbase     => { 'owner' => 'hbase', 'group' => 'hadoop', 'mode' => '0640' },
-    hive      => { 'owner' => 'hive', 'group' => 'hadoop', 'mode' => '0640' },
-    jhs       => { 'owner' => 'mapred', 'group' => 'hadoop', 'mode' => '0640' },
-    mapred    => { 'owner' => 'mapred', 'group' => 'hadoop', 'mode' => '0640' },
-    yarn      => { 'owner' => 'yarn', 'group' => 'hadoop', 'mode' => '0640' },
-    zookeeper => { 'owner' => 'zookeeper', 'group' => 'hadoop', 'mode' => '0640' }
+    'hdfs'      => { 'owner' => 'hdfs', 'group' => 'hadoop', 'mode' => '0640' },
+    'hbase'     => { 'owner' => 'hbase', 'group' => 'hadoop', 'mode' => '0640' },
+    'hive'      => { 'owner' => 'hive', 'group' => 'hadoop', 'mode' => '0640' },
+    'jhs'       => { 'owner' => 'mapred', 'group' => 'hadoop', 'mode' => '0640' },
+    'mapred'    => { 'owner' => 'mapred', 'group' => 'hadoop', 'mode' => '0640' },
+    'yarn'      => { 'owner' => 'yarn', 'group' => 'hadoop', 'mode' => '0640' },
+    'zookeeper' => { 'owner' => 'zookeeper', 'group' => 'hadoop', 'mode' => '0640' }
   }
   keytabs.each do |name, opts|
     krb5_principal "#{name}/#{node['fqdn']}" do
