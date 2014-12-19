@@ -70,7 +70,7 @@ if node['hadoop'].key?('core_site') && node['hadoop']['core_site'].key?('hadoop.
   end
 
   # The yarn principal is needed to run YARN applications/MapReduce
-  krb5_principal "yarn"
+  krb5_principal 'yarn' do
     randkey true
     action :create
   end
