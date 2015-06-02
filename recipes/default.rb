@@ -34,11 +34,18 @@ if node.key?('java') && node['java'].key?('java_home')
   node.default['hive']['hive_env']['java_home'] = node['java']['java_home']
 end
 
+
+if node['roles'].include?('hadoop_namenode')
+  # Add key for hdfs config
+  node.default['hadoop']['hdfs_site']['dfs.namenode.rpc-bind-host'] = node['network']['interfaces'][node['hadoop']['namenode_iface']]['addresses'].keys[1]
+end
+
 include_recipe 'hadoop::default'
 
 # Allow unlimited crypto
 if node['java']['install_flavor'] == 'oracle'
   include_recipe 'hadoop_wrapper::_jce'
 end
+
 
 include_recipe 'hadoop_wrapper::kerberos_init'

@@ -9,8 +9,10 @@ default['java']['oracle']['accept_oracle_download_terms'] = true
 # Hadoop
 # core-site.xml
 default['hadoop']['core_site']['hadoop.tmp.dir'] = '/hadoop'
+
 # hdfs-site.xml
 default['hadoop']['hdfs_site']['dfs.datanode.max.transfer.threads'] = '4096'
+
 # mapred-site.xml
 default['hadoop']['mapred_site']['mapreduce.framework.name'] = 'yarn'
 # yarn-site.xml

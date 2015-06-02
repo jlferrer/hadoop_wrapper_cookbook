@@ -32,3 +32,4 @@ ruby_block 'initaction-format-namenode' do
   ### TODO: this should check all dfs name dirs, not just the first
   # only_if { (Dir.entries("#{node['hadoop']['hdfs_site']['dfs.name.dir'].split(',').first}") - %w{ . .. }).empty? }
 end
+
